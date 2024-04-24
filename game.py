@@ -1,21 +1,23 @@
 import arcade
-import dataclasses
 from settings import *
 
 
-def main():
-    arcade.open_window(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
+class Game(arcade.Window):
+    def __init__(self, width: int, height: int, title: str):
+        """
+        Initilizes game window
+        :param width: game window width
+        :param height: game window height
+        """
+        super().__init__(width, height, title)
+        arcade.set_background_color(COLORS['GRAY0'])
+        self.width = width
+        self.height = height
+        self.title = title
 
-    arcade.set_background_color(arcade.color.ANTIQUE_WHITE)
+    def on_draw(self):
+        arcade.start_render()
 
-    arcade.start_render()
+        arcade.draw_circle_filled(self.width / 2, self.height / 2, RADIUS, COLORS['ORANGE'])
 
-    arcade.draw_circle_filled(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, RADIUS, arcade.color.BLUE)
-
-    arcade.finish_render()
-
-    arcade.run()
-
-
-if __name__ == '__main__':
-    main()
+        # arcade.draw_text('🙂', self.width / 2, self.height / 2, COLORS['ORANGE'], font_size=14)
